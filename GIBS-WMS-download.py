@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from owslib.wms import WebMapService
+import os
 
 layerName = 'BlueMarble_ShadedRelief_Bathymetry'
 
@@ -16,6 +17,7 @@ img = wms.getmap(layers=[layerName],  # Layers
                  transparent=True)  # Nodata transparency
 
 # Save output PNG to a file
+os.mkdir('image-downloads',exist_ok=True)
 out = open(f'image-downloads/{layerName}.png', 'wb')
 out.write(img.read())
 out.close()
